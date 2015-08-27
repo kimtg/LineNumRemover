@@ -1,14 +1,16 @@
 <html>
 	<meta charset="UTF-8"> 
 	<head><title>LineNumRemover</title></head>
-	<body onload="resizeTextArea()" onresize="resizeTextArea()">
+	<body onload="resizeTextArea(); area.focus();" onresize="resizeTextArea()">
 		<form id="form1">
-			<textarea id="area" style="width: 100%"></textarea>
 			<div id="formWrapper">
 				<input type="button" value="Remove Line Numbers" onclick="removeLineNum()" style="width: 100%" />
 			</div>
+			<textarea id="area" style="width: 100%"></textarea>
 		</form>
 		<script type="text/javascript">
+			var area = document.getElementById("area");
+			
 			function resizeTextArea() {
 				//Wrap your form contents in a div and get its offset height
 				var heightOfForm = document.getElementById('formWrapper').offsetHeight;
@@ -16,13 +18,11 @@
 				var heightOfBody = document.body.clientHeight;
 				var buffer = 35; //Accounts for misc. padding, etc.
 				//Set the height of the textarea dynamically
-				document.getElementById('area').style.height =
-				  (heightOfBody - heightOfForm) - buffer;
+				area.style.height = (heightOfBody - heightOfForm) - buffer;
 				//NOTE: For extra panache, add onresize="resizeTextArea()" to the body
 			}
 
-			function removeLineNum() {
-				var area = document.getElementById("area");				
+			function removeLineNum() {				
 				var lines = area.value.replace("\r","").split("\n");
 				var newText = "";
 				var regex = new RegExp("^\\d+ ?");
