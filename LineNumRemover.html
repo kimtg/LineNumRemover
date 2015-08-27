@@ -29,7 +29,8 @@
 				for (var i in lines) {
 					var line = lines[i];
 					var newLine = line.replace(regex, "");
-					newText += newLine + "\n";
+					if (i > 0) newText += "\n";
+					newText += newLine;
 				}
 				area.value = newText;
 			}
