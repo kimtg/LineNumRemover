@@ -26,8 +26,7 @@
 				var lines = area.value.replace("\r","").split("\n");
 				var newText = "";
 				var regex = new RegExp("^\\d+ ?");
-				for (var i in lines)
-				{
+				for (var i in lines) {
 					var line = lines[i];
 					var newLine = line.replace(regex, "");
 					newText += newLine + "\n";
